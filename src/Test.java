@@ -23,11 +23,17 @@ public class Test {
         f.setSize(800, 1000);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        f.setResizable(false);
+        //meuFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        f.setExtendedState(f.MAXIMIZED_BOTH);
         try {
             // Set System L&F
-            UIManager.setLookAndFeel(
-                    UIManager.getSystemLookAndFeelClassName());
+//            UIManager.setLookAndFeel(
+//                    UIManager.getSystemLookAndFeelClassName());
+            com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("Green", "licena", "tpcgamers");
+            
+            UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+            
         } catch (UnsupportedLookAndFeelException e) {
             // handle exception
         } catch (ClassNotFoundException e) {
