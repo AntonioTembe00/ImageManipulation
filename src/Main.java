@@ -1,5 +1,6 @@
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,7 +25,15 @@ public class Main extends JPanel {
     public static JButton rotateRight, rotateLeft, cropBT, shearBT, translateBT, scaleBT, openFile;
 
     public Main() {
+       
         build();
+        optionsPanel.setBackground(Color.ORANGE);
+        rotatePanel.setBackground(Color.ORANGE);
+        valuesPanel.setBackground(Color.ORANGE); 
+        cropPanel.setBackground(Color.ORANGE);
+        shearPanel.setBackground(Color.ORANGE);
+        scalePanel.setBackground(Color.ORANGE);
+        translatePanel.setBackground(Color.ORANGE); 
     }
 
     public void build() {
@@ -38,32 +47,32 @@ public class Main extends JPanel {
         rotatePanel = new JPanel();
         cropPanel = new JPanel();
         valuesPanel = new JPanel(new GridLayout(2, 4));
-        cropBT = new JButton("crop");
+        cropBT = new JButton("Cortar");
         cropBT.addMouseListener(translater);
         x = new JTextField(2);
         y = new JTextField(2);
         a = new JTextField(2);
         b = new JTextField(2);
-        valuesPanel.add(new JLabel(" X-Start:  "));
+        valuesPanel.add(new JLabel(" Inicio-X:  "));
         valuesPanel.add(x);
-        valuesPanel.add(new JLabel(" Y-Start:  "));
+        valuesPanel.add(new JLabel(" Inicio-Y:  "));
         valuesPanel.add(y);
-        valuesPanel.add(new JLabel(" X-Lenght:  "));
+        valuesPanel.add(new JLabel(" Comp-X:  "));
         valuesPanel.add(a);
-        valuesPanel.add(new JLabel(" Y-Lenght:  "));
+        valuesPanel.add(new JLabel(" Comp-Y:  "));
         valuesPanel.add(b);
         cropPanel.add(valuesPanel);
         cropPanel.add(cropBT);
 
-        openFile = new JButton("Open File");
+        openFile = new JButton("Abrir Ficheiro");
         openFile.addMouseListener(translater);
 
         shearValueX = new JTextField(3);
         shearValueY = new JTextField(3);
-        shearBT = new JButton("Shear");
+        shearBT = new JButton("Cortar");
         shearBT.addMouseListener(translater);
         shearPanel = new JPanel();
-        shearPanel.add(new JLabel("shear values"));
+        shearPanel.add(new JLabel("Val. corte"));
         shearPanel.add(shearValueX);
         shearPanel.add(new JLabel("X"));
         shearPanel.add(shearValueY);
@@ -72,10 +81,10 @@ public class Main extends JPanel {
 
         scaleValueX = new JTextField(3);
         scaleValueY = new JTextField(3);
-        scaleBT = new JButton("Scale");
+        scaleBT = new JButton("Escala");
         scaleBT.addMouseListener(translater);
         scalePanel = new JPanel();
-        scalePanel.add(new JLabel("scale values"));
+        scalePanel.add(new JLabel("Val. escala"));
         scalePanel.add(scaleValueX);
         scalePanel.add(new JLabel("X"));
         scalePanel.add(scaleValueY);
@@ -84,18 +93,18 @@ public class Main extends JPanel {
 
         translateValueX = new JTextField(3);
         translateValueY = new JTextField(3);
-        translateBT = new JButton("Translate");
+        translateBT = new JButton("Trans");
         translateBT.addMouseListener(translater);
         translatePanel = new JPanel();
-        translatePanel.add(new JLabel("translate values"));
+        translatePanel.add(new JLabel("Val. Trans"));
         translatePanel.add(translateValueX);
         translatePanel.add(new JLabel("X"));
         translatePanel.add(translateValueY);
         translatePanel.add(new JLabel("Y"));
         translatePanel.add(translateBT);
 
-        transformsOptions = new String[]{"rotate", "scale", "shear", "identity"};
-        renderOptions = new String[]{"none", "grayscale"};
+        transformsOptions = new String[]{"Girar", "Escala", "Corte", "identidade"};
+        renderOptions = new String[]{"Nenhum", "Preto e Branco"};
         transformsCB = new JComboBox(transformsOptions);
         
         renderCB = new JComboBox(renderOptions);
@@ -108,7 +117,7 @@ public class Main extends JPanel {
         rotateLeft.addMouseListener(translater);
         rotatePanel.add(rotateLeft);
         rotatePanel.add(rotateRight);
-        rotatePanel.add(new JLabel("rotation value"));
+        rotatePanel.add(new JLabel("Val. rotação"));
         rotatePanel.add(rotationValue);
 
         //optionsPanel.add(transformsCB);  

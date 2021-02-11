@@ -49,7 +49,7 @@ public class TransformImage {
         @Override
         public void paint(Graphics g) {
             if (path.equals("")) {
-                image = loadImage("kid.jpg");
+                image = loadImage("dubai.jpg");
             } else {
                 image = loadImage(path);
             }
