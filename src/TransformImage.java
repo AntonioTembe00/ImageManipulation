@@ -1,5 +1,6 @@
 
 /**
+ * Classe responsáveel pela transformação das imagens,
  * @author Afzal José
  * @author António Tembe
  * @author Thomas Chicuma
@@ -29,7 +30,7 @@ public class TransformImage {
         Rectangle rectangle;
         BufferedImage image;
         String path = "";
-        // AffineTransform tx = new AffineTransform();
+       
 
         TransformingCanvas() {
             translateX = 0;
@@ -46,6 +47,10 @@ public class TransformImage {
             setDoubleBuffered(true);
         }
 
+        /**
+         * Método responsavel pelo desenho do gráfico.
+         * @param g 
+         */
         @Override
         public void paint(Graphics g) {
             if (path.equals("")) {
@@ -72,15 +77,14 @@ public class TransformImage {
             ourGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                     RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             ourGraphics.setColor(Color.BLACK);
-//            ourGraphics.drawString("Imagem a transformar", 50, 30);
+
             if (!crop && !setIdentity) {
                 ourGraphics.drawImage(image, tx, null);
-//                System.out.println("first run");
+;
             }
             if (setIdentity == true) {
                 tx.setToIdentity();
-                //tx.scale(100, 1);
-                // tx.rotate();
+                
                 tx.translate(getWidth() / 2, getHeight() / 2);
                 ourGraphics.drawImage(image, tx, null);
                 setIdentity = false;
@@ -96,12 +100,14 @@ public class TransformImage {
                 } catch (IOException e) {
 
                 }
-//                System.out.println("not first run");
             }
 
-            // super.paint(g);
         }
-
+        /**
+         * Metódo responsável pela leitura da imagem.
+         * @param fileName é o nome do ficheiro.
+         * @return 
+         */
         private BufferedImage loadImage(String fileName) {
             BufferedImage img = null;
             try {
@@ -111,7 +117,12 @@ public class TransformImage {
             }
             return img;
         }
-
+        /**
+         * Metódo responsável pelo corte da imagem.
+         * @param src
+         * @param rect
+         * @return 
+         */
         private BufferedImage cropImage(BufferedImage src, Rectangle rect) {
             BufferedImage image = src.getSubimage(0, 0, rect.width, rect.height);
             BufferedImage copyOfImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -121,26 +132,12 @@ public class TransformImage {
         }
         
         public void grayScale(){
-//            int width = image.getWidth();
-//            int height = image.getHeight();
-//            for(int i=0; i<height; i++){
-//         
-//            for(int j=0; j<width; j++){
-//            
-//               Color c = new Color(image.getRGB(j, i));
-//               int red = (int)(c.getRed() * 0.299);
-//               int green = (int)(c.getGreen() * 0.587);
-//               int blue = (int)(c.getBlue() *0.114);
-//               Color newColor = new Color(red+green+blue,
-//               
-//               red+green+blue,red+green+blue);
-//               
-//               image.setRGB(j,i,newColor.getRGB());
-//            }
-//         }
+
         }
     }
-
+    /**
+     * Metódo responsavel pela translação da imagem.
+     */
     public static class TranslateHandler implements MouseListener,
             MouseMotionListener {
 
@@ -153,27 +150,22 @@ public class TransformImage {
         }
 
         public void mousePressed(MouseEvent e) {
-            // capture starting point
+           
             lastOffsetX = e.getX();
             lastOffsetY = e.getY();
         }
 
         public void mouseDragged(MouseEvent e) {
 
-            // new x and y are defined by current mouse location subtracted
-            // by previously processed mouse location
             int newX = e.getX() - lastOffsetX;
             int newY = e.getY() - lastOffsetY;
 
-            // increment last offset to last processed by drag event.
             lastOffsetX += newX;
             lastOffsetY += newY;
 
-            // update the canvas locations
             canvas.translateX += newX;
             canvas.translateY += newY;
 
-            // schedule a repaint.
             canvas.repaint();
         }
 
@@ -185,7 +177,6 @@ public class TransformImage {
                 } catch (Exception ex) {
                     canvas.rotate = canvas.rotate + 30;
                 }
-                // schedule a repaint.
                 canvas.repaint();
             }
             if (e.getSource() == Main.rotateLeft) {
@@ -195,7 +186,6 @@ public class TransformImage {
                 } catch (Exception ex) {
                     canvas.rotate = canvas.rotate - 30;
                 }
-                // schedule a repaint.
                 canvas.repaint();
             }
             if (e.getSource() == Main.cropBT) {
@@ -267,7 +257,6 @@ public class TransformImage {
                 FileNameExtensionFilter extFilter = new FileNameExtensionFilter(
                         "Image File", "jpg", "png");
                 fileChooser.setAcceptAllFileFilterUsed(false);
-                // Set the file filter
                 fileChooser.addChoosableFileFilter(extFilter);
 
                 int returnValue = fileChooser.showOpenDialog(null);
@@ -309,11 +298,8 @@ public class TransformImage {
         public void mouseWheelMoved(MouseWheelEvent e) {
             if (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
 
-                // make it a reasonable amount of zoom
-                // .1 gives a nice slow transition
                 canvas.scaleY = canvas.scaleX += (.1 * e.getWheelRotation());
-                // don't cross negative threshold.
-                // also, setting scaleX to 0 has bad effects
+            
                 canvas.scaleY = canvas.scaleX = Math.max(0.00001, canvas.scaleX);
                 canvas.repaint();
             }

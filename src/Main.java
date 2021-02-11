@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * Classe responsável pelo desenho da tela principal.
  * @author Afzal José
  * @author António Tembe
  * @author Thomas Chicuma

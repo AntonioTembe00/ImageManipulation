@@ -14,7 +14,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author António Tembe
  * @author Thomas Chicuma
  */
-public class Test {
+public class JanelaPrincipal {
 
     public static void main(String[] args) {
         JFrame f = new JFrame("Manipulação de Imagem");
@@ -27,9 +27,7 @@ public class Test {
         //meuFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         f.setExtendedState(f.MAXIMIZED_BOTH);
         try {
-            // Set System L&F
-//            UIManager.setLookAndFeel(
-//                    UIManager.getSystemLookAndFeelClassName());
+
             com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("Green", "licena", "tpcgamers");
             
             UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
