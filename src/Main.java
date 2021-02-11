@@ -20,7 +20,7 @@ public class Main extends JPanel {
     JComboBox transformsCB, renderCB;
     String[] transformsOptions;
     String[] renderOptions;
-    public static JButton identity = new JButton("set to identity");
+    public static JButton identity = new JButton("movimentar");
     public static JTextField rotationValue, x, y, a, b, shearValueX, shearValueY, scaleValueX, scaleValueY, translateValueX, translateValueY;
     public static JButton rotateRight, rotateLeft, cropBT, shearBT, translateBT, scaleBT, openFile;
 
@@ -68,16 +68,20 @@ public class Main extends JPanel {
         openFile.addMouseListener(translater);
 
         shearValueX = new JTextField(3);
+        shearValueX.setVisible(false);
         shearValueY = new JTextField(3);
+        shearValueY.setVisible(false);
         shearBT = new JButton("Cortar");
+        shearBT.setVisible(false);
         shearBT.addMouseListener(translater);
         shearPanel = new JPanel();
-        shearPanel.add(new JLabel("Val. corte"));
+        shearPanel.add(new JLabel(""));
         shearPanel.add(shearValueX);
-        shearPanel.add(new JLabel("X"));
+        shearPanel.add(new JLabel(""));
         shearPanel.add(shearValueY);
-        shearPanel.add(new JLabel("Y"));
+        shearPanel.add(new JLabel(""));
         shearPanel.add(shearBT);
+        
 
         scaleValueX = new JTextField(3);
         scaleValueY = new JTextField(3);
